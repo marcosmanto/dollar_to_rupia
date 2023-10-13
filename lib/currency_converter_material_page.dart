@@ -109,6 +109,15 @@ class _CurrencyConverterMaterialPageState
                   ),
                 ),
               TextField(
+                onSubmitted: (value) => convert(),
+                onChanged: (newText) {
+                  if (newText.isNotEmpty) {
+                    convert();
+                  } else {
+                    result = 0;
+                    setState(() {});
+                  }
+                },
                 onTapOutside: (e) => FocusScope.of(context).unfocus(),
                 controller: textEditingController,
                 style: const TextStyle(
@@ -136,12 +145,19 @@ class _CurrencyConverterMaterialPageState
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
-                  minimumSize: const Size(double.infinity, 50),
+                  minimumSize: const Size(double.infinity, 55),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
-                child: const Text('Convert'),
+                child: const Text(
+                  'Convert',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ],
           ),
